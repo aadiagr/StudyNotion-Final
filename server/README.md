@@ -398,10 +398,10 @@ This project is licensed under the ISC License - see the LICENSE file for detail
 
 For questions or support, please reach out through:
 - Issues: GitHub Issues
-- Email: support@studynotion.com
+- Email: aadityaagr16@gmail.com
 
 ---
 
 <div align="center">
-  <p>Made with ❤️ by the StudyNotion Team</p>
+  <p>Made with ❤️ by the Aadi</p>
 </div>
