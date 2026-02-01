@@ -44,6 +44,14 @@ const {
   getAverageRating,
   getAllRatingReview,
 } = require("../controllers/RatingandReview")
+
+// Note Controllers Import
+const {
+  uploadNote,
+  getNotesBySubsection,
+  getNotesByCourse,
+  deleteNote,
+} = require("../controllers/Note")
 const {
   updateCourseProgress,
   getProgressPercentage,
@@ -101,5 +109,17 @@ router.post("/getCategoryPageDetails", categoryPageDetails)
 router.post("/createRating", auth, isStudent, createRating)
 router.get("/getAverageRating", getAverageRating)
 router.get("/getReviews", getAllRatingReview)
+
+// ********************************************************************************************************
+//                                      Note routes
+// ********************************************************************************************************
+// Upload a note for a subsection (Instructor only)
+router.post("/uploadNote", auth, isInstructor, uploadNote)
+// Get all notes for a subsection
+router.get("/getNotesBySubsection/:subsectionId", auth, getNotesBySubsection)
+// Get all notes for a course
+router.get("/getNotesByCourse/:courseId", auth, getNotesByCourse)
+// Delete a note (Only the instructor who created it)
+router.delete("/deleteNote/:noteId", auth, isInstructor, deleteNote)
 
 module.exports = router

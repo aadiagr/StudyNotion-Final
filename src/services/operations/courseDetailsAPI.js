@@ -22,6 +22,10 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  UPLOAD_NOTE_API,
+  GET_NOTES_BY_SUBSECTION_API,
+  GET_NOTES_BY_COURSE_API,
+  DELETE_NOTE_API,
 } = courseEndpoints
 
 export const getAllCourses = async () => {
@@ -385,4 +389,101 @@ export const createRating = async (data, token) => {
   }
   toast.dismiss(toastId)
   return success
+}
+
+// Upload a note for a subsection
+export const uploadNote = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Uploading note...")
+  try {
+    const response = await apiConnector("POST", UPLOAD_NOTE_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("UPLOAD NOTE API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Upload Note")
+    }
+    toast.success("Note uploaded successfully")
+    result = response?.data?.data
+  } catch (error) {
+    console.log("UPLOAD NOTE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+// Get notes by subsection
+export const fetchNotesBySubsection = async (subsectionId, token) => {
+  let result = []
+  try {
+    const response = await apiConnector(
+      "GET",
+      `${GET_NOTES_BY_SUBSECTION_API}/${subsectionId}`,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+    console.log("GET NOTES BY SUBSECTION API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Fetch Notes")
+    }
+    result = response?.data?.data
+  } catch (error) {
+    console.log("GET NOTES BY SUBSECTION API ERROR............", error)
+    // Don't show toast for this as it might be expected on first load
+  }
+  return result
+}
+
+// Get notes by course
+export const fetchNotesByCourse = async (courseId, token) => {
+  let result = []
+  try {
+    const response = await apiConnector(
+      "GET",
+      `${GET_NOTES_BY_COURSE_API}/${courseId}`,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+    console.log("GET NOTES BY COURSE API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Fetch Notes")
+    }
+    result = response?.data?.data
+  } catch (error) {
+    console.log("GET NOTES BY COURSE API ERROR............", error)
+    toast.error(error.message)
+  }
+  return result
+}
+
+// Delete a note
+export const deleteNote = async (noteId, token) => {
+  let result = null
+  const toastId = toast.loading("Deleting note...")
+  try {
+    const response = await apiConnector(
+      "DELETE",
+      `${DELETE_NOTE_API}/${noteId}`,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+    console.log("DELETE NOTE API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Delete Note")
+    }
+    toast.success("Note deleted successfully")
+    result = true
+  } catch (error) {
+    console.log("DELETE NOTE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
 }
