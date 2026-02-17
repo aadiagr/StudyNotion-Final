@@ -51,7 +51,9 @@
 - 📊 **Progress Tracking** - Track course completion and subsection progress
 - ⭐ **Ratings & Reviews** - Rate courses and view instructor feedback
 - 👤 **User Profile** - Manage profile information and enrolled courses
+- 👤 **User Profile** - Manage profile information and enrolled courses
 - 🎓 **Course Dashboard** - View all enrolled and completed courses
+- 📝 **Lecture Notes** - Download course notes uploaded by instructors
 
 ### For Instructors
 - 📖 **Course Management** - Create, update, and delete courses
@@ -59,7 +61,9 @@
 - 📹 **Media Upload** - Upload course videos and resources to Cloudinary
 - 📊 **Student Analytics** - Track student progress and engagement
 - 💰 **Revenue Dashboard** - Monitor course sales and earnings
-- 📝 **Course Settings** - Configure course details, pricing, and visibility
+- 💰 **Revenue Dashboard** - Monitor course sales and earnings
+- 📝 **Lecture Notes** - Upload and manage notes for course sections
+- ⚙️ **Course Settings** - Configure course details, pricing, and visibility
 
 ### Admin Features
 - 🏷️ **Category Management** - Organize courses by categories
@@ -85,6 +89,11 @@
 - **React Hook Form** - Form management
 - **React Hot Toast** - Notifications
 - **Chart.js** - Data visualization
+- **React Hot Toast** - Notifications
+- **React Dropzone** - File uploads
+- **React OTP Input** - OTP entry
+- **Video React** - Video player
+- **Chart.js** - Data visualization
 - **Swiper** - Carousel/slider component
 
 ### Backend
@@ -96,7 +105,10 @@
 - **Bcrypt** - Password hashing
 - **Nodemailer** - Email service
 - **Cloudinary** - Image/video hosting
+- **Cloudinary** - Image/video hosting
 - **Razorpay** - Payment gateway
+- **Node Schedule** - Scheduled tasks
+- **OTP Generator** - OTP generation
 
 ### Tools & Utilities
 - **Prettier** - Code formatting
@@ -324,6 +336,12 @@ http://localhost:4000/api/v1
 ### Category Endpoints
 - `GET /categories` - Get all categories
 - `POST /categories/create` - Create category (Admin)
+
+### Note Endpoints (Instructor)
+- `POST /course/uploadNote` - Upload a note
+- `GET /course/getNotesBySubsection/:subsectionId` - Get notes for a subsection
+- `GET /course/getNotesByCourse/:courseId` - Get notes for a course
+- `DELETE /course/deleteNote/:noteId` - Delete a note
 
 ---
 
