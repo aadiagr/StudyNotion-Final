@@ -1,7 +1,7 @@
 # StudyNotion - Educational Technology Platform
 
 <div align="center">
-  <img src="public/favicon.ico" alt="StudyNotion Logo" width="200"/>
+  <img src="public/logo.png" alt="StudyNotion Logo" width="200"/>
   <p><strong>A modern, feature-rich EdTech platform designed to revolutionize online learning</strong></p>
   
   ![React](https://img.shields.io/badge/react-%23323330.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
